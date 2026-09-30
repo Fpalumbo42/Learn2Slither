@@ -1,5 +1,6 @@
 import random
 
+
 class Board:
 
     def __init__(self):
@@ -10,22 +11,21 @@ class Board:
             else:
                 row = ['W'] + ['0'] * 8 + ['W']
             self.grid.append(row)
-        
-        self.place_apple('R')
-        self.place_apple('G')
-        self.place_apple('G')
-            
-    def place_apple(self, color):
-        # todo check if there is empty space to place apple
+
+    def empty_cells(self):
         empty_space_cord = []
- 
         for i, row in enumerate(self.grid):
             for j, cell in enumerate(row):
-                if row[j] == '0':
+                if cell == '0':
                     empty_space_cord.append((i, j))
-        
-        cord = random.choice(empty_space_cord)
-        self.grid[cord[0]][cord[1]] = color
+        return empty_space_cord
+
+    def set_cell(self, cord, value):
+        self.grid[cord[0]][cord[1]] = value
+
+    def place_apple(self, color):
+        # todo check if there is empty space to place apple
+        self.set_cell(random.choice(self.empty_cells()), color)
 
     def __str__(self):
         return '\n'.join(' '.join(row) for row in self.grid)

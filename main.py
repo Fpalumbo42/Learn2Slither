@@ -1,9 +1,9 @@
-from board import Board
+from game import Game
 
 
 def main():
-    board = Board()
-    print(board)
+    game = Game()
+    print(game.board)
 
 
 if __name__ == "__main__":
